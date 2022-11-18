@@ -21,10 +21,14 @@ export default async () => {
     name VARCHAR(255) NOT NULL
 )`);
 
+    await pool.query(`CREATE INDEX type_name ON public."Types"(name)`);
+
     await pool.query(`CREATE TABLE IF NOT EXISTS "Brands"(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 )`);
+
+    await pool.query(`CREATE INDEX brand_name ON public."Brands"(name)`);
 
     await pool.query(`CREATE TABLE IF NOT EXISTS "Products"(
     id SERIAL PRIMARY KEY,

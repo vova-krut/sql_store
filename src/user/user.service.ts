@@ -43,7 +43,7 @@ class UserService {
             throw ApiError.unAuthorized("Email or password is incorrect");
         }
 
-        const passwordsMatch = bcrypt.compareSync(password, user.password!);
+        const passwordsMatch = await bcrypt.compare(password, user.password!);
         if (!passwordsMatch) {
             throw ApiError.unAuthorized("Email or password is incorrect");
         }

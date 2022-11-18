@@ -37,7 +37,7 @@ class CartRepository {
 
     async getCartForUser(userId: number): Promise<Cart[]> {
         const cart = await pool.query(
-            `SELECT "productId", quantity, title, description, price, "brandId", "typeId" FROM public."Carts" c JOIN public."Products" p ON c."productId" = p.id AND c."userId" = $1`,
+            `SELECT "productId", quantity, title, description, price, "brandId", "typeId" FROM public."Carts" c JOIN public."Products" p ON c."productId" = p.id WHERE c."userId" = $1`,
             [userId]
         );
 
